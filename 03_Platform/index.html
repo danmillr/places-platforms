@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MapLibre Template</title>
+  <!-- Load MapLibre GL JS -->
+  <link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Title -->
+  <div id="map-title">East Harlem Map</div>
+
+  <!-- Map container -->
+  <div id="map"></div>
+
+  <!-- Legend with layer toggles -->
+  <div id="legend">
+    <h3>Layers</h3>
+    <label><input type="checkbox" id="points-toggle" checked /> Points</label><br />
+    <label><input type="checkbox" id="polygons-toggle" checked /> Polygons</label>
+  </div>
+
+  <!-- JS logic -->
+  <script src="script.js"></script>
+</body>
+</html>
