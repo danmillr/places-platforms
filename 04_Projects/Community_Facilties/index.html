@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Map with Isochrone, Sidebar, and Filters</title>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+</head>
+<body>
+  <div id="sidebar">
+    <h2>Explore</h2>
+    <input type="text" id="search" placeholder="Search...">
+    <select id="typeFilter">
+      <option value="">All Types</option>
+    </select>
+    <div id="timeControl">
+      <label><strong>Time</strong></label><br/>
+      <div id="currentTimeDisplay">--:--</div>
+      <label for="customTime">Select Time:</label>
+      <input type="time" id="customTime" />
+    </div>
+    <ul id="featureList"></ul>
+    <button id="useLocation">Use My Location</button>
+    <button id="clearSelection">Clear Selection</button>
+    <div id="intersectResults"></div>
+  </div>
+
+  <div id="legend">
+    <h4>Legend</h4>
+    <p><span class="legend-color" style="background:#4CAF50;"></span>Community Garden</p>
+    <p><span class="legend-color" style="background:#FF5722;"></span>Education Site</p>
+    <p><span class="legend-color" style="background:#0080ff;"></span>5-min Isochrone</p>
+  </div>
+
+  <div id="toggles">
+    <label><input type="checkbox" id="toggleGardens" checked /> Gardens</label>
+    <label><input type="checkbox" id="toggleEducation" checked /> Education</label>
+  </div>
+
+  <div id="map"></div>
+
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+  <script src="map.js"></script>
+</body>
+</html>
