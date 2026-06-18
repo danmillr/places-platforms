@@ -1,10 +1,10 @@
 # ARCH 6133 – Advanced Synthesis
 
 **Location:** Tata Innovation Center, Room 460  
-**Meeting Times:** Tuesday / Thursday, 10:30 AM – 1:00 PM  
+**Meeting Times:** Tuesday / Thursday, 6PM - 830PM  
 **Instructor:** Dan Miller  
 📧 miller.daniel.patrick@gmail.com / dpm272@cornell.edu  
-**Office Hours:** Thursday, 1:30 PM – 3:00 PM and by appointment  
+**Office Hours:** by appointment  
 **Grading:** Letter
 
 ---
