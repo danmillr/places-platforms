@@ -1,4 +1,4 @@
-# ARCH 6133 – Advanced Synthesis
+# ARCH 6133 – Advanced Synthesis, Summer 2026
 
 **Location:** Tata Innovation Center, Room 460  
 **Meeting Times:** Tuesday / Thursday, 10:30 AM – 1:00 PM  
@@ -75,7 +75,7 @@ You are expected to bring curiosity, criticality, and commitment to experimental
 - Completion of assignments with thoughtful reflection  
 - Final project submission: platform + narrative  
 - Regular attendance, discussion prep, and critique involvement  
-- Weekly tutorial engagement via GitHub
+- Weekly engagement with module materials via GitHub
 
 ---
 
@@ -138,6 +138,6 @@ Students should discuss accommodations in advance. Religious holidays will be re
 
 ## Resources
 
-- Weekly tutorials and materials posted to this repository  
+- Module materials posted to this repository  
 - Readings shared ahead of class  
 - Email or attend office hours for help or discussion  
