@@ -1,4 +1,4 @@
-# Urban Planning Web Mapping — Course Tutorials
+# Places / Platforms Web Mapping — Course Tutorials
 
 Two self-contained tutorials for building and deploying web-based data visualizations and interactive maps. Each tutorial includes working code templates, annotated JavaScript, and step-by-step setup instructions.
 
