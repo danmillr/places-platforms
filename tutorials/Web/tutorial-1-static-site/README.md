@@ -138,7 +138,7 @@ This is your `index.html` starting point. It links your CSS and JS and has seman
   </main>
 
   <footer>
-    <p>Built for Urban Planning Studio | Data from Open-Meteo, Google Maps, MTA</p>
+    <p>Built for Places / Platforms | Data from Open-Meteo, Google Maps, MTA</p>
   </footer>
 
   <!-- Load Google Maps JS API (replace YOUR_KEY) -->
