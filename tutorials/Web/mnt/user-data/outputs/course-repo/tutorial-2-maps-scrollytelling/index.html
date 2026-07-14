@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MapLibre + GeoJSON — Tutorial 2A</title>
+
+  <!-- MapLibre GL JS CSS (required for controls and popups) -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.5.0/dist/maplibre-gl.css" />
+
+  <link rel="stylesheet" href="assets/css/map.css" />
+</head>
+<body>
+
+  <header>
+    <h1>NYC Sites Map</h1>
+    <p class="subtitle">MapLibre GL JS + GeoJSON — Tutorial 2A</p>
+  </header>
+
+  <div id="app">
+
+    <!-- Layer toggle sidebar -->
+    <aside id="sidebar">
+      <h3>Layers</h3>
+      <label class="toggle-row">
+        <input type="checkbox" id="toggle-sites" checked onchange="toggleLayer('sites-circles'); toggleLayer('sites-labels')" />
+        <span class="dot" style="background:#3C4ED6;"></span>
+        Key Sites
+      </label>
+      <label class="toggle-row">
+        <input type="checkbox" id="toggle-areas" checked onchange="toggleLayer('study-area-fill'); toggleLayer('study-area-outline')" />
+        <span class="dot" style="background:#e05a2b; opacity:0.5;"></span>
+        Study Areas
+      </label>
+
+      <h3 style="margin-top:1.5rem;">About</h3>
+      <p class="sidebar-note">
+        Click any marker to view details. Use checkboxes to toggle layers on and off.
+      </p>
+      <p class="sidebar-note">
+        Data loaded from local <code>assets/data/nyc-sites.geojson</code>.
+      </p>
+
+      <h3 style="margin-top:1.5rem;">Fly To</h3>
+      <div id="fly-buttons">
+        <!-- Populated by JS from the sites data -->
+      </div>
+    </aside>
+
+    <!-- The map container. Height is set in CSS. -->
+    <div id="map"></div>
+
+  </div>
+
+  <!-- MapLibre GL JS -->
+  <script src="https://unpkg.com/maplibre-gl@4.5.0/dist/maplibre-gl.js"></script>
+  <script src="assets/js/map.js"></script>
+
+</body>
+</html>

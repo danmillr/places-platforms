@@ -1,0 +1,95 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-74.0048, 40.7480]
+      },
+      "properties": {
+        "id": "high-line",
+        "name": "The High Line",
+        "category": "Open Space",
+        "neighborhood": "Chelsea / Hudson Yards",
+        "description": "A 1.45-mile elevated linear park built on a former freight rail line. Opened in 2009 and transformed West Side development patterns.",
+        "year": 2009,
+        "zoom": 15.5,
+        "bearing": -29,
+        "pitch": 50
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.9442, 40.6782]
+      },
+      "properties": {
+        "id": "prospect-park",
+        "name": "Prospect Park",
+        "category": "Open Space",
+        "neighborhood": "Park Slope / Crown Heights",
+        "description": "Frederick Law Olmsted and Calvert Vaux's 585-acre park, designed in 1866. Often considered their finest work, superior to Central Park in their own estimation.",
+        "year": 1867,
+        "zoom": 14,
+        "bearing": 0,
+        "pitch": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.9857, 40.7580]
+      },
+      "properties": {
+        "id": "times-square",
+        "name": "Times Square",
+        "category": "Commercial / Civic",
+        "neighborhood": "Midtown Manhattan",
+        "description": "Redesigned as a pedestrian plaza in 2009 after Broadway was closed to traffic between 42nd and 47th Streets. A landmark case study in tactical urbanism.",
+        "year": 2009,
+        "zoom": 16,
+        "bearing": 29,
+        "pitch": 60
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.9442, 40.7282]
+      },
+      "properties": {
+        "id": "domino-park",
+        "name": "Domino Park",
+        "category": "Waterfront",
+        "neighborhood": "Williamsburg, Brooklyn",
+        "description": "A 5-acre waterfront park on the East River, opened 2018. Part of a broader mixed-use redevelopment of the former Domino Sugar refinery site.",
+        "year": 2018,
+        "zoom": 15,
+        "bearing": 10,
+        "pitch": 45
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.9174, 40.7614]
+      },
+      "properties": {
+        "id": "hunters-point",
+        "name": "Hunters Point South Park",
+        "category": "Waterfront / Resilience",
+        "neighborhood": "Long Island City, Queens",
+        "description": "An 11-acre waterfront park designed with living shoreline infrastructure and storm surge protection following lessons from Hurricane Sandy (2012).",
+        "year": 2018,
+        "zoom": 14.5,
+        "bearing": -15,
+        "pitch": 40
+      }
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Data Explorer</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Urban Data Explorer</h1>
+    <p class="subtitle">Live APIs &mdash; Street View, Weather, Transit</p>
+  </header>
+
+  <main>
+
+    <!-- =========================================
+         SECTION 1: GOOGLE STREET VIEW
+         Requires Google Maps JS API key below
+    ========================================= -->
+    <section id="streetview-section" class="card">
+      <h2>Street View</h2>
+      <p>Enter coordinates to explore any location in Street View.</p>
+      <div class="input-row">
+        <label>
+          Lat
+          <input id="sv-lat" type="number" step="any" placeholder="40.7580" value="40.7580" />
+        </label>
+        <label>
+          Lng
+          <input id="sv-lng" type="number" step="any" placeholder="-73.9855" value="-73.9855" />
+        </label>
+        <button onclick="loadStreetView()">Load Street View</button>
+      </div>
+      <div id="streetview-container"></div>
+    </section>
+
+    <!-- =========================================
+         SECTION 2: WEATHER (Open-Meteo, no key)
+    ========================================= -->
+    <section id="weather-section" class="card">
+      <h2>Current Weather</h2>
+      <p>Live conditions from <a href="https://open-meteo.com" target="_blank">Open-Meteo</a>. No API key required.</p>
+      <div class="input-row">
+        <label>
+          Lat
+          <input id="wx-lat" type="number" step="any" value="40.7128" />
+        </label>
+        <label>
+          Lng
+          <input id="wx-lng" type="number" step="any" value="-74.0060" />
+        </label>
+        <button onclick="loadWeather()">Get Weather</button>
+      </div>
+      <div id="weather-output" class="output-box">Press the button to load weather data.</div>
+    </section>
+
+    <!-- =========================================
+         SECTION 3: NYC SUBWAY ARRIVALS (MTA GTFS-RT)
+         See README for API key setup
+    ========================================= -->
+    <section id="transit-section" class="card">
+      <h2>NYC Subway Arrivals</h2>
+      <p>Real-time arrivals from the MTA GTFS-RT feed (mock data in template; see README to connect live feed).</p>
+      <div class="input-row">
+        <label>
+          Stop
+          <select id="stop-select">
+            <option value="127">Times Sq-42 St (A/C/E)</option>
+            <option value="R16">Times Sq-42 St (N/Q/R/W)</option>
+            <option value="631">Grand Central-42 St (4/5/6)</option>
+            <option value="A27">Fulton St (A/C)</option>
+          </select>
+        </label>
+        <button onclick="loadTransit()">Load Arrivals</button>
+      </div>
+      <div id="transit-output" class="output-box">Select a stop and click Load Arrivals.</div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Urban Planning Studio &mdash; Data: Open-Meteo, Google Maps, MTA</p>
+  </footer>
+
+  <!--
+    Google Maps JS API
+    Replace YOUR_GOOGLE_MAPS_KEY with your actual key.
+    Get one at: https://console.cloud.google.com
+    Restrict the key to your GitHub Pages domain for security.
+  -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_KEY"></script>
+
+  <!-- Your JS comes last, after the DOM and dependencies are loaded -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

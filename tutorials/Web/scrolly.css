@@ -1,0 +1,246 @@
+/* assets/css/scrolly.css
+   Tutorial 2B: Scrollytelling Narrative Map
+   ----------------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --raisin:  #1B1B33;
+  --cobalt:  #3C4ED6;
+  --panel-w: 420px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+  background: #f5f5f0;
+  color: #1a1a1a;
+  line-height: 1.7;
+}
+
+/* =====================================================
+   MAIN LAYOUT
+   Two-column: narrative (left, scrolling) + map (right, sticky)
+   ===================================================== */
+
+#scrolly-container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* =====================================================
+   LEFT: NARRATIVE PANELS
+   ===================================================== */
+
+#narrative {
+  width: var(--panel-w);
+  flex-shrink: 0;
+  padding: 0 0 0 0;
+  /* Extra top padding so first step starts mid-screen */
+  padding-top: 50vh;
+}
+
+/* Each narrative panel */
+.step {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.step-content {
+  background: white;
+  margin: 0 1.5rem;
+  padding: 2rem 1.75rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0.5;
+  transform: translateY(8px);
+  max-width: 380px;
+}
+
+/* Active step is fully visible */
+.step.active .step-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-label {
+  display: block;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cobalt);
+  margin-bottom: 0.6rem;
+}
+
+.step-content h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.3;
+  color: var(--raisin);
+  margin-bottom: 0.8rem;
+}
+
+.step-content p {
+  font-size: 0.92rem;
+  color: #333;
+  margin-bottom: 0.8rem;
+}
+
+.step-instruction {
+  color: var(--cobalt);
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+/* ---- Fact grid inside step ---- */
+.step-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.fact {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.82rem;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.fact strong {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+}
+
+/* ---- Resources list ---- */
+.resources {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.resources h4 {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.resources ul {
+  list-style: none;
+  padding: 0;
+}
+
+.resources li {
+  font-size: 0.82rem;
+  color: #444;
+  padding: 0.2rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.resources li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--cobalt);
+}
+
+/* =====================================================
+   RIGHT: STICKY MAP
+   ===================================================== */
+
+#map-container {
+  flex: 1;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Step counter overlay ---- */
+#step-indicator {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: rgba(27, 27, 51, 0.85);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.78rem;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+/* ---- MapLibre popup overrides ---- */
+.maplibregl-popup-content {
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  max-width: 260px;
+}
+
+.popup-name {
+  font-weight: 700;
+  color: var(--raisin);
+  margin-bottom: 0.2rem;
+}
+
+/* =====================================================
+   RESPONSIVE
+   Stack vertically on small screens
+   ===================================================== */
+@media (max-width: 720px) {
+  #scrolly-container {
+    flex-direction: column-reverse;
+  }
+
+  #map-container {
+    position: relative;
+    height: 50vh;
+    width: 100%;
+    top: 0;
+  }
+
+  #narrative {
+    width: 100%;
+    padding-top: 1rem;
+  }
+
+  .step-content {
+    margin: 0 1rem;
+    max-width: none;
+  }
+}

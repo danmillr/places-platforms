@@ -1,0 +1,206 @@
+/* assets/css/style.css
+   Urban Data Explorer — Tutorial 1
+   -------------------------------- */
+
+/* ---- Reset ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Base ---- */
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: #f0f0f5;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+a {
+  color: #3C4ED6;
+}
+
+/* ---- Header ---- */
+header {
+  background: #1B1B33;
+  color: white;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #a0a0c0;
+  margin-top: 0.4rem;
+  font-size: 1rem;
+}
+
+/* ---- Main layout ---- */
+main {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ---- Cards ---- */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #3C4ED6;
+}
+
+.card p {
+  margin: 0.5rem 0 0.75rem;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* ---- Inputs ---- */
+.input-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin: 0.75rem 0;
+}
+
+.input-row label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 100px;
+}
+
+input[type="number"],
+select {
+  border: 1px solid #d0d0e0;
+  border-radius: 5px;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.9rem;
+  width: 100%;
+  background: #fafafa;
+}
+
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #3C4ED6;
+  background: white;
+}
+
+button {
+  background: #3C4ED6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  align-self: flex-end;
+  transition: background 0.15s;
+}
+
+button:hover {
+  background: #2f3fb5;
+}
+
+/* ---- Output boxes ---- */
+.output-box {
+  background: #f7f7fc;
+  border: 1px solid #e0e0ef;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  min-height: 80px;
+  line-height: 1.7;
+}
+
+/* ---- Street View ---- */
+#streetview-container {
+  width: 100%;
+  height: 420px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #e8e8ee;
+  margin-top: 0.5rem;
+}
+
+/* ---- Transit table ---- */
+.arrivals-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.arrivals-table th {
+  text-align: left;
+  border-bottom: 1px solid #e0e0ef;
+  padding: 0.4rem 0.5rem;
+  color: #555;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.arrivals-table td {
+  padding: 0.5rem 0.5rem;
+  border-bottom: 1px solid #f0f0f5;
+}
+
+.route-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #1B1B33;
+  color: white;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.arriving-now {
+  color: #d44;
+  font-weight: 600;
+}
+
+/* ---- Footer ---- */
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+  font-size: 0.82rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 580px) {
+  header h1 { font-size: 1.5rem; }
+  .card { padding: 1.25rem; }
+  #streetview-container { height: 280px; }
+}

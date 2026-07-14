@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NYC Public Space — A Scrollytelling Map</title>
+
+  <!-- MapLibre GL JS -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.5.0/dist/maplibre-gl.css" />
+
+  <link rel="stylesheet" href="assets/css/scrolly.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       SCROLLYTELLING LAYOUT
+       Two columns: sticky map on the right, scrolling text on the left.
+       The JavaScript (scrolly.js) wires them together using IntersectionObserver.
+       ============================================================ -->
+
+  <div id="scrolly-container">
+
+    <!-- LEFT: Narrative panels that scroll -->
+    <div id="narrative">
+
+      <!-- Each .step has a data-step attribute matching an index in the steps array -->
+      <!-- Step 0: Introduction / overview -->
+      <div class="step active" data-step="0">
+        <div class="step-content">
+          <span class="step-label">Introduction</span>
+          <h2>Reshaping New York's Public Edge</h2>
+          <p>
+            Over the past two decades, New York City has fundamentally reimagined
+            how it uses its public spaces. Waterfronts that were once industrial
+            dead zones, elevated rail lines written off as eyesores, and traffic-
+            choked plazas have been transformed into celebrated civic assets.
+          </p>
+          <p>
+            This map traces five sites that embody different models of that
+            transformation. Scroll to explore each one.
+          </p>
+          <p class="step-instruction">Scroll down to begin &darr;</p>
+        </div>
+      </div>
+
+      <!-- Step 1: High Line -->
+      <div class="step" data-step="1">
+        <div class="step-content">
+          <span class="step-label">Site 1 of 5 &mdash; Chelsea</span>
+          <h2>The High Line</h2>
+          <p>
+            Opened in 2009 on a disused 1930s freight rail viaduct, the High Line
+            runs 1.45 miles through Chelsea and Hudson Yards. It has become one of
+            the most visited parks in the United States, drawing over eight million
+            visitors annually.
+          </p>
+          <p>
+            The project is often cited as a textbook case of adaptive reuse and
+            community-led advocacy. Friends of the High Line, founded by two local
+            residents in 1999, spent a decade fighting demolition before securing
+            city support and private funding.
+          </p>
+          <p>
+            Critics note that the park has also catalyzed dramatic neighborhood
+            gentrification and rent increases in West Chelsea. It raises enduring
+            questions about who public infrastructure is built for.
+          </p>
+          <div class="step-facts">
+            <div class="fact"><strong>Length</strong>1.45 mi</div>
+            <div class="fact"><strong>Opened</strong>2009</div>
+            <div class="fact"><strong>Cost</strong>~$153M</div>
+            <div class="fact"><strong>Annual visitors</strong>~8M</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Times Square Plaza -->
+      <div class="step" data-step="2">
+        <div class="step-content">
+          <span class="step-label">Site 2 of 5 &mdash; Midtown Manhattan</span>
+          <h2>Times Square Broadway Plazas</h2>
+          <p>
+            In 2009, NYC DOT Commissioner Janette Sadik-Khan closed Broadway to
+            through traffic between 42nd and 47th Streets as a six-month pilot,
+            replacing moving lanes with folding chairs and temporary paint. The
+            experiment was expected to worsen crosstown congestion. Instead, traffic
+            improved citywide.
+          </p>
+          <p>
+            The plazas became permanent in 2010. They are one of the clearest
+            examples of tactical urbanism scaling up to lasting infrastructure:
+            low-cost, reversible interventions that demonstrate proof of concept
+            before committing to permanent construction.
+          </p>
+          <p>
+            The redesign also shows the power of political will. The transformation
+            required little engineering and virtually no new capital budget.
+            The main ingredient was willingness to reallocate existing street space.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3: Domino Park -->
+      <div class="step" data-step="3">
+        <div class="step-content">
+          <span class="step-label">Site 3 of 5 &mdash; Williamsburg, Brooklyn</span>
+          <h2>Domino Park</h2>
+          <p>
+            The five-acre Domino Park, designed by James Corner Field Operations
+            (the same firm behind the High Line), opened in 2018 on the East River
+            waterfront in Williamsburg. It preserved industrial artifacts from the
+            former Domino Sugar refinery, including refinery equipment, as public art.
+          </p>
+          <p>
+            The park is the public-space component of a larger mixed-use development
+            by Two Trees Management. It illustrates both the potential and the
+            complications of privately funded public space: the park is owned and
+            maintained by the developer, not the city.
+          </p>
+          <p>
+            What obligations do privately owned public spaces (POPS) carry?
+            Who has the authority to regulate behavior, set hours, or determine
+            programming? Domino Park sits at the center of these debates.
+          </p>
+          <div class="step-facts">
+            <div class="fact"><strong>Size</strong>5 acres</div>
+            <div class="fact"><strong>Opened</strong>2018</div>
+            <div class="fact"><strong>Type</strong>POPS</div>
+            <div class="fact"><strong>Designer</strong>JCFO</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Hunters Point South -->
+      <div class="step" data-step="4">
+        <div class="step-content">
+          <span class="step-label">Site 4 of 5 &mdash; Long Island City, Queens</span>
+          <h2>Hunters Point South Park</h2>
+          <p>
+            Hunters Point South Park was designed after Hurricane Sandy (2012)
+            demonstrated the vulnerability of New York's waterfront to storm surge.
+            The 11-acre park on the East River incorporates a "living shoreline":
+            a planted berm that absorbs wave energy and provides habitat while
+            protecting the neighborhood behind it.
+          </p>
+          <p>
+            The park is a case study in climate-adaptive infrastructure: the
+            landscape itself is the flood protection system. This approach, sometimes
+            called "green infrastructure" or "nature-based solutions," challenges the
+            traditional distinction between parks (amenity) and infrastructure (utility).
+          </p>
+          <p>
+            At the same time, the park anchors one of the largest affordable housing
+            developments in NYC history, illustrating how public space investment
+            can be linked to housing policy goals.
+          </p>
+          <div class="step-facts">
+            <div class="fact"><strong>Size</strong>11 acres</div>
+            <div class="fact"><strong>Opened</strong>2018 (Phase 1)</div>
+            <div class="fact"><strong>Key feature</strong>Living shoreline</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: Prospect Park -->
+      <div class="step" data-step="5">
+        <div class="step-content">
+          <span class="step-label">Site 5 of 5 &mdash; Brooklyn</span>
+          <h2>Prospect Park</h2>
+          <p>
+            Designed by Frederick Law Olmsted and Calvert Vaux and opened in 1867,
+            Prospect Park predates all the others by over a century. Olmsted himself
+            considered it superior to Central Park, which he had completed just a
+            few years earlier: its meadow is larger, its lake more naturalistic,
+            and its borders more varied.
+          </p>
+          <p>
+            The park is a reminder that the design and political struggles around
+            urban public space are not new. Olmsted spent years battling the
+            Tammany Hall machine over funding, maintenance standards, and the
+            park's mission. The arguments he made, that democratic cities require
+            accessible green space for the physical and mental restoration of
+            working people, are strikingly contemporary.
+          </p>
+          <p>
+            Prospect Park also raises questions of equity over time. Today it sits
+            at the center of one of the most expensive residential neighborhoods
+            in New York. In 1867, the surrounding land was largely undeveloped.
+            Public parks don't just respond to cities; they shape them.
+          </p>
+        </div>
+      </div>
+
+      <!-- Closing step -->
+      <div class="step" data-step="6">
+        <div class="step-content">
+          <span class="step-label">Conclusion</span>
+          <h2>Patterns and Questions</h2>
+          <p>
+            Across these five sites, a few threads emerge. Public spaces are
+            never just parks. They are instruments of urban policy, tools of
+            economic development, and arenas of political contest. How they get
+            built, who funds them, who maintains them, and who they serve are as
+            important as their physical design.
+          </p>
+          <p>
+            For your own projects this semester, consider: what is the public
+            space problem you're solving, and for whom? Who holds power in the
+            process, and whose interests might be displaced?
+          </p>
+          <div class="resources">
+            <h4>Further Reading</h4>
+            <ul>
+              <li>Jerold Kayden, <em>Privately Owned Public Space</em> (2000)</li>
+              <li>Robert Moses and the Modern City, Columbia GSAPP</li>
+              <li>NYC Parks, Capital Projects Division reports</li>
+              <li>PlaNYC / OneNYC capital investment data</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacer so last panel doesn't get stuck at the bottom -->
+      <div style="height: 40vh;"></div>
+
+    </div>
+
+    <!-- RIGHT: Sticky map -->
+    <div id="map-container">
+      <div id="map"></div>
+      <!-- Progress indicator -->
+      <div id="step-indicator">
+        <span id="step-counter">Introduction</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MapLibre GL JS -->
+  <script src="https://unpkg.com/maplibre-gl@4.5.0/dist/maplibre-gl.js"></script>
+  <script src="assets/js/scrolly.js"></script>
+
+</body>
+</html>

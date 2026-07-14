@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-74.0120, 40.7420],
+          [-73.9960, 40.7420],
+          [-73.9960, 40.7540],
+          [-74.0120, 40.7540],
+          [-74.0120, 40.7420]
+        ]]
+      },
+      "properties": {
+        "name": "Chelsea / Far West Side Study Area",
+        "description": "Area encompassing the High Line corridor and Hudson Yards development zone"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-73.9650, 40.7200],
+          [-73.9240, 40.7200],
+          [-73.9240, 40.7380],
+          [-73.9650, 40.7380],
+          [-73.9650, 40.7200]
+        ]]
+      },
+      "properties": {
+        "name": "Williamsburg Waterfront Study Area",
+        "description": "East River waterfront from Greenpoint to Bushwick Inlet"
+      }
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+/* assets/css/map.css
+   Tutorial 2A: MapLibre + GeoJSON
+   -------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: #f0f0f5;
+  color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ---- Header ---- */
+header {
+  background: #1B1B33;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #a0a0c0;
+  font-size: 0.9rem;
+}
+
+/* ---- App layout: sidebar + map side by side ---- */
+#app {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ---- Sidebar ---- */
+#sidebar {
+  width: 240px;
+  background: white;
+  padding: 1.25rem;
+  overflow-y: auto;
+  flex-shrink: 0;
+  border-right: 1px solid #e0e0ef;
+}
+
+#sidebar h3 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+/* ---- Layer toggle rows ---- */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.toggle-row input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ---- Fly-to buttons ---- */
+#fly-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fly-btn {
+  background: #f0f0f8;
+  border: 1px solid #d0d0e8;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  text-align: left;
+  color: #1B1B33;
+  transition: background 0.15s;
+}
+
+.fly-btn:hover {
+  background: #3C4ED6;
+  color: white;
+  border-color: #3C4ED6;
+}
+
+/* ---- Sidebar notes ---- */
+.sidebar-note {
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-note code {
+  background: #f0f0f5;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+/* ---- Map ---- */
+#map {
+  flex: 1;
+  height: 100%;
+}
+
+/* ---- MapLibre popup overrides ---- */
+.maplibregl-popup-content {
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.popup-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  color: #1B1B33;
+}
+
+.popup-category {
+  display: inline-block;
+  background: #3C4ED6;
+  color: white;
+  border-radius: 3px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.popup-desc {
+  color: #444;
+  margin-top: 0.4rem;
+}
+
+/* ---- Responsive: stack on small screens ---- */
+@media (max-width: 640px) {
+  #app { flex-direction: column; }
+  #sidebar { width: 100%; height: 160px; overflow-x: auto; }
+  #map { flex: 1; }
+}
