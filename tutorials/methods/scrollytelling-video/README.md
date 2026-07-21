@@ -24,20 +24,22 @@ You will start from a 5-6 minute source video, split it into 4-12 clips, and scr
 
 ```
 scrollytelling-video/
-├── README.md                      # this file
-├── starter/                       # SCENES: multi-clip, looping (recommended)
-├── starter-scrub-frames/          # SCRUBBED via JPG frames — NYT-style
-└── starter-scrub-video/           # SCRUBBED via single MP4 — smallest
+├── README.md                          # this file
+├── starter/                           # SCENES: multi-clip, looping (recommended)
+├── starter-scrub-frames/              # SCRUBBED via JPG frames — NYT-style, multi-file
+├── starter-scrub-frames-simple/       # SCRUBBED via JPG frames — one HTML file, easiest to edit
+└── starter-scrub-video/               # SCRUBBED via single MP4 — smallest download
 ```
 
-Three separate starters, three different scroll-to-video patterns. **Pick one and copy that folder into your project.** They do not compose — you use one or the other. Each starter is self-contained with its own `README.md` explaining the specific edit surface.
+Four self-contained starters, three scroll-to-video patterns (two variants of the frame-scrub pattern — one multi-file, one single-file). **Pick one and copy that folder into your project.** They do not compose — you use one or the other. Each starter has its own `README.md` explaining the specific edit surface.
 
 ### Which starter for what
 
 | Situation | Use this starter |
 |---|---|
 | 3+ minute source, multiple distinct shots, looping OK | `starter/` (scene-based) |
-| Under 90-sec continuous camera move, want reader's scroll to be the "playhead", ≤ 100 MB of frame JPGs is OK | `starter-scrub-frames/` |
+| Under 90-sec continuous camera move, want reader's scroll to be the "playhead" | `starter-scrub-frames/` (multi-file) or `starter-scrub-frames-simple/` (single HTML file) |
+| Just want to drop text into one file and go | `starter-scrub-frames-simple/` |
 | Under 30-sec clip, want the smallest total download, OK with minor mobile jitter | `starter-scrub-video/` |
 | Not sure? | `starter/` — safest, works for the widest range of source material |
 

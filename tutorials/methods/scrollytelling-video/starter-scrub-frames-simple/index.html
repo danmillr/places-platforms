@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scrollytelling — scrubbed frames (single file)</title>
+
+  <!-- Font. Delete or swap. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============ EDIT LOOK & FEEL HERE ============ */
+    :root {
+      --bg:     #0f0e14;    /* page + video letterbox background */
+      --fg:     #f5f2ea;    /* text color */
+      --accent: #e2a000;    /* progress bar */
+      --font:   'Inter', system-ui, sans-serif;
+      --gutter: 6vw;
+
+      /* Total scroll length as a multiple of viewport height.
+         Larger = slower scrub, more room for overlays.  */
+      --runway: 800vh;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; background: var(--bg); color: var(--fg);
+      font: 400 18px/1.45 var(--font);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* The one image is the "video". Script swaps its src on scroll. */
+    #frame {
+      position: fixed; inset: 0;
+      width: 100vw; height: 100vh;
+      object-fit: cover; z-index: 0; background: #000;
+    }
+    #vignette {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(15,14,20,0.55), rgba(15,14,20,0.15) 30%, rgba(15,14,20,0.15) 70%, rgba(15,14,20,0.75)),
+        radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.55) 100%);
+    }
+
+    /* Scroll runway. Overlays inside are all position:fixed. */
+    main { position: relative; z-index: 2; min-height: var(--runway); }
+
+    /* Overlays fade in when reader is between data-at and data-until (0..1). */
+    .overlay {
+      position: fixed; max-width: 520px;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+      pointer-events: none; z-index: 3;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+    }
+    .overlay.on { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* Positions — pick one per overlay. */
+    .top-left     { top: 8vh;   left: var(--gutter); }
+    .top-right    { top: 8vh;   right: var(--gutter); text-align: right; }
+    .bottom-left  { bottom: 10vh; left: var(--gutter); }
+    .bottom-right { bottom: 10vh; right: var(--gutter); text-align: right; }
+    .center       { top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+    .center.on    { transform: translate(-50%, calc(-50% - 6px)); }
+
+    h1 { font-weight: 800; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.02; margin: 0 0 .5em; letter-spacing: -0.01em; }
+    h2 { font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.6rem); line-height: 1.1;  margin: 0 0 .4em; }
+    p  { margin: 0 0 .7em; font-size: clamp(0.95rem, 1.5vw, 1.15rem); }
+    .byline { opacity: .75; font-size: .9rem; }
+    .stat   { font-size: clamp(4rem, 12vw, 8rem); color: var(--accent); font-weight: 800; line-height: .9; margin-bottom: .15em; }
+
+    /* Progress bar. Delete #progress if you don't want it. */
+    #progress { position: fixed; top: 0; left: 0; height: 3px; width: 100vw;
+                background: rgba(255,255,255,0.08); z-index: 10; }
+    #progress > div { height: 100%; width: 0; background: var(--accent); transition: width .1s linear; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .overlay { transition: opacity 0.2s ease; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <img id="frame" src="frames/frame_0001.jpg" alt="" />
+  <div id="vignette"></div>
+  <div id="progress"><div></div></div>
+
+  <main>
+    <!--
+      ============ EDIT OVERLAY TEXT + TIMING HERE ============
+
+      Each <div class="overlay ..."> is a piece of text or image that
+      fades IN when the reader passes data-at (0..1 of full scroll)
+      and fades OUT at data-until.
+
+      To add a new overlay: copy an existing <div>, change class,
+      data-at, data-until, and inner content.
+
+      To change position: replace the position class (top-left, top-right,
+      bottom-left, bottom-right, or center).
+    -->
+
+    <div class="overlay top-left" data-at="0.00" data-until="0.12">
+      <h1>Your Title Here</h1>
+      <p class="byline">By your name — ARCH 6133, 2026</p>
+    </div>
+
+    <div class="overlay bottom-right" data-at="0.15" data-until="0.30">
+      <p>A one-line hook that sets the argument up.</p>
+    </div>
+
+    <div class="overlay center" data-at="0.35" data-until="0.55">
+      <h2>Every 3 minutes</h2>
+      <p>A middle beat. Something the reader hasn't heard yet.</p>
+    </div>
+
+    <div class="overlay bottom-left" data-at="0.58" data-until="0.75">
+      <h2 class="stat">62%</h2>
+      <p>of surveyed storefronts have changed hands since 2015.</p>
+    </div>
+
+    <div class="overlay top-right" data-at="0.78" data-until="0.93">
+      <p>Add a note here that anchors the closing.</p>
+    </div>
+
+    <div class="overlay center" data-at="0.95" data-until="1.00">
+      <h2>Closing thought</h2>
+      <p>One sentence to send them off.</p>
+    </div>
+
+  </main>
+
+  <script>
+    // ============ EDIT FRAME COUNT HERE ============
+    // Set to the number of JPGs you extracted into ./frames/
+    // (see this folder's README.md for the ffmpeg one-liner).
+    const FRAME_COUNT = 360;
+
+    // Frame filename builder — matches "frames/frame_0001.jpg" convention.
+    const framePath = i => `frames/frame_${String(i).padStart(4, '0')}.jpg`;
+
+    // ============ SCROLL LOGIC (no edits needed below) ============
+    const img       = document.getElementById('frame');
+    const progressBar = document.querySelector('#progress > div');
+    const overlays  = Array.from(document.querySelectorAll('.overlay'));
+
+    // Preload every frame so scrolling is instant.
+    for (let i = 1; i <= FRAME_COUNT; i++) { new Image().src = framePath(i); }
+
+    let currentIdx = -1;
+    function tick() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? window.scrollY / max : 0;
+
+      const idx = Math.max(1, Math.min(FRAME_COUNT, Math.round(p * (FRAME_COUNT - 1)) + 1));
+      if (idx !== currentIdx) { img.src = framePath(idx); currentIdx = idx; }
+
+      progressBar.style.width = (p * 100).toFixed(2) + '%';
+
+      for (const o of overlays) {
+        const at    = parseFloat(o.dataset.at    || '0');
+        const until = parseFloat(o.dataset.until || '1');
+        o.classList.toggle('on', p >= at && p <= until);
+      }
+    }
+
+    let queued = false;
+    const request = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; tick(); }); } };
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    document.addEventListener('DOMContentLoaded', tick);
+  </script>
+</body>
+</html>
