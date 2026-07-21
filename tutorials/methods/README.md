@@ -17,6 +17,7 @@ Two directories are fully built out as reference exemplars (one web, one analysi
 | [mta-turnstile/](mta-turnstile/) | Notebook (Python + pandas) | Shell | How do I work with MTA turnstile / hourly ridership data? |
 | [text-game-analytics/](text-game-analytics/) | Web (HTML/JS + D3) | Shell | How do I build a text game that captures user behavior and visualizes it at the end? |
 | [chinatown-signs/](chinatown-signs/) | Notebook (Python) | **Full** | How do I extract, analyze, and map signs from Street View facades in Chinatown, and embed their text into 3D word space? |
+| [subspotting-scrape/](subspotting-scrape/) | Scripts (Python) | **Full** | How do I recover structured data (CSV + GeoJSON) from a static color-coded infographic like the 2017 Subspotting subway reception map? |
 
 ## Shared conventions
 

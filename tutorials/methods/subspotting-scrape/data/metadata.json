@@ -1,0 +1,124 @@
+{
+  "source_png": "https://subspotting.nyc/assets/img/main/provider/popup-systemexplorer.png",
+  "source_svg": "https://subspotting.nyc/assets/img/main/provider/explorer-overlay.svg",
+  "captured": "2017-01",
+  "processed_scale_target_width_px": 1728,
+  "pixel_to_mile_slope": 0.020868837045668037,
+  "pixel_to_mile_intercept": -1.853986466067906,
+  "carrier_hex": {
+    "att": "#247ca9",
+    "tmobile": "#c12466",
+    "verizon": "#c22b28",
+    "sprint": "#cdb029"
+  },
+  "n_bands": 21,
+  "band_pixel_ranges": [
+    [
+      58,
+      83
+    ],
+    [
+      153,
+      177
+    ],
+    [
+      247,
+      271
+    ],
+    [
+      342,
+      366
+    ],
+    [
+      435,
+      461
+    ],
+    [
+      535,
+      556
+    ],
+    [
+      627,
+      649
+    ],
+    [
+      719,
+      742
+    ],
+    [
+      815,
+      834
+    ],
+    [
+      895,
+      925
+    ],
+    [
+      994,
+      1018
+    ],
+    [
+      1085,
+      1111
+    ],
+    [
+      1174,
+      1205
+    ],
+    [
+      1265,
+      1298
+    ],
+    [
+      1381,
+      1390
+    ],
+    [
+      1460,
+      1484
+    ],
+    [
+      1554,
+      1577
+    ],
+    [
+      1656,
+      1669
+    ],
+    [
+      1740,
+      1764
+    ],
+    [
+      1831,
+      1856
+    ],
+    [
+      1922,
+      1952
+    ]
+  ],
+  "labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "A",
+    "C",
+    "E",
+    "B",
+    "D",
+    "F",
+    "M",
+    "G",
+    "J",
+    "Z",
+    "L",
+    "N",
+    "Q",
+    "R"
+  ]
+}

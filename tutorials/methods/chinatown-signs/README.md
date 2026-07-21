@@ -1,6 +1,11 @@
 # Chinatown Signs: Facade Extraction, OCR, Color, and Multilingual Embeddings
 
-A full end-to-end analysis pipeline. Companion notebook: `chinatown_signs.ipynb`.
+A full end-to-end analysis pipeline. Two entry points:
+
+- **`chinatown_signs.ipynb`** — the original notebook. Samples along street centerlines every 80ft, runs the full downstream signs pipeline (OCR + color + embedding + 3D map). Good for the argument about semantic space.
+- **`pluto_viewpoints.py` → `discover_panos.py` → `fetch_facades.py` → `build_strips.py`** — the PLUTO + temporal workflow. One camera per tax lot, aimed at the facade, sampled across every historical Google Street View pass from 2007 to today. Good for change-over-time analysis (turnover, sign replacement, gentrification pace). Documented in the "PLUTO + temporal Street View" section below.
+
+Both share the same downstream steps 4-9 (OCR, color, embeddings, maps). Pick your entry based on whether the argument is "what do signs mean in space" (centerline sampling) or "what changed on this lot over N years" (PLUTO temporal).
 
 ## What you will build
 
@@ -106,6 +111,65 @@ The notebook walks through:
 - Small business signage is public but people are not. Blur or crop out faces if they appear in your outputs.
 - Attribution: cite Google Street View, OSM, and any labeled datasets you used to train detectors.
 - If you publish an interactive map of businesses' signage, contact the businesses for public-facing deliverables. Academic papers are different from public tools.
+
+## PLUTO + temporal Street View
+
+An alternate entry into the pipeline: sample **one camera per tax lot, facing the facade**, across every year of Google Street View coverage from 2007 onward. Use this when the question is *what changed at this address over time* (sign turnover, storefront replacement, physical renovation).
+
+### The four scripts
+
+```bash
+python3 pluto_viewpoints.py    # NYC PLUTO -> data/pluto_viewpoints.csv (1 row per lot)
+python3 discover_panos.py      # streetlevel -> data/pano_index.csv    (~11 panos per lot)
+export GOOGLE_MAPS_API_KEY=...
+python3 fetch_facades.py       # -> data/facades/{bbl}/{year_*}.jpg
+python3 build_strips.py        # -> data/strips/{bbl}.jpg  (side-by-side year comparison)
+```
+
+### Step-by-step
+
+1. **PLUTO lots.** Query NYC Open Data resource `64uk-42ks` (MapPLUTO) with a lat/lon bbox filter. Chinatown study area (Grand-Worth-Bowery-Broadway) returns ~1,026 tax lots with centroid coordinates, address, building class, year built, unit counts, and assessed value. No shapefile download needed — the SODA API returns everything.
+
+2. **Compute facade-facing camera per lot.** For each lot:
+   - Load OSM walk-network edges via `osmnx.graph_from_bbox(...)`.
+   - Reproject to EPSG:2263 (NY State Plane, feet) so distances are meaningful.
+   - For each lot centroid, find the nearest street edge with the spatial index.
+   - Camera position = the closest point on that edge; camera heading = bearing from that camera position to the lot centroid.
+   - This gives one row per lot with `(bbl, address, cam_lat, cam_lon, heading_deg, cam_to_lot_ft)`.
+
+3. **Enumerate historical panoramas with `streetlevel`.** The Google Street View Static API does not surface Time Machine panos, but the community-maintained [`streetlevel`](https://github.com/sk-zk/streetlevel) library scrapes Google's internal API to return them. For each camera position:
+   - `streetview.find_panorama(cam_lat, cam_lon, radius=25)` gets the most recent pano.
+   - Its `.historical` list contains every past capture at that location (typically 8-14 in Manhattan, from 2007 through today).
+   - For each pano, recompute the heading from the pano's *actual* car position to the lot centroid, because the pano may sit 5-15 m away from where you asked.
+
+4. **Pick one pano per target year.** For each lot, choose the pano nearest to each target year (default: 2007, 2011, 2014, 2018, 2022, current). Ties broken by month. Some lots have no 2007 pano — the picker will fall back to the closest available and record `actual_year`.
+
+5. **Fetch via Street View Static API by `pano_id`.** The Static API's `pano` parameter lets you request a specific captured pano, including historical ones once you know the ID. Cost is $7/1000 requests after the $200 monthly free credit (~28.5k free images/month).
+
+6. **Build comparison strips.** `build_strips.py` composes each lot's yearly images horizontally with year labels, producing a single JPEG that tells the change story at a glance.
+
+### Notes and gotchas
+
+- **`streetlevel` is unofficial.** It works reliably as of this method's authoring but relies on Google's internal API which can change. For academic research this is fine; for a public deployment or client work, wrap `find_panorama` calls in try/except and cache the results.
+- **Historical panos require macOS deps.** `streetlevel` pulls in `pyexiv2` which pulls in `brotli` and `inih` native libs. On macOS, `brew install brotli inih` may not be sufficient — the Homebrew brotli formula (as of Oct 2025) creates a self-referencing symlink at `/opt/homebrew/Cellar/brotli/<v>/lib/libbrotlidec.1.dylib` that must be repointed at `libbrotlidec.1.2.0.dylib` before `pyexiv2` will import.
+- **PLUTO lat/lon are lot centroids.** Interior lots on large parcels may sit 100+ ft from the nearest street; the camera-to-lot distance shows this. For frontage-oriented analysis, filter to `cam_to_lot_ft < 80` or compute a proper front-facade midpoint by intersecting the lot polygon with the street buffer.
+- **Same pano, different lots.** A single Google car photo often serves 3-5 adjacent lots at different headings — each is a separate Static API request and separate billing. If your budget is tight, deduplicate by `pano_id` first and just crop the same pano at multiple headings client-side.
+- **Coverage is not uniform in time.** 2007 was Google's first NYC pass; some streets were skipped. 2010 and 2015 have thin coverage. The picker's `actual_year` column lets you audit which target years actually got matched.
+- **Google's ToS.** Fair-use quotation of derived analytics is fine for research; do not redistribute raw image caches. Cite Google Street View + capture date in any deliverable.
+
+### What good outputs look like
+
+- `data/pluto_viewpoints.csv`: ~1,026 rows for Chinatown, each with a camera position and heading.
+- `data/pano_index.csv`: ~11,000 rows (11 panos × 1,026 lots), spanning 2007-2026.
+- `data/fetch_plan.csv`: ~6,156 rows (6 target years × 1,026 lots).
+- `data/facades/<bbl>/2007_*.jpg`, `.../2011_*.jpg`, ...: one JPEG per (lot, target-year).
+- `data/strips/<bbl>.jpg`: a single horizontal strip that shows the same address across all six years.
+
+Feeding these into the downstream OCR / color / embedding steps of `chinatown_signs.ipynb` lets you compute things like:
+
+- Fraction of signs that changed script (Chinese-only → English-only) per lot per decade.
+- Turnover velocity: how often does the dominant sign color at a lot change?
+- Color-shift clustering: do gentrifying corridors show a common color drift?
 
 ## Common pitfalls
 
