@@ -18,6 +18,7 @@ Two directories are fully built out as reference exemplars (one web, one analysi
 | [text-game-analytics/](text-game-analytics/) | Web (HTML/JS + D3) | Shell | How do I build a text game that captures user behavior and visualizes it at the end? |
 | [chinatown-signs/](chinatown-signs/) | Notebook (Python) | **Full** | How do I extract, analyze, and map signs from Street View facades in Chinatown, and embed their text into 3D word space? |
 | [subspotting-scrape/](subspotting-scrape/) | Scripts (Python) | **Full** | How do I recover structured data (CSV + GeoJSON) from a static color-coded infographic like the 2017 Subspotting subway reception map? |
+| [scrollytelling-video/](scrollytelling-video/) | Web (HTML/CSS/JS) | **Full** | How do I build a NYTimes-style scroll-driven video piece with text and image overlays as a static site? Three starters: scene-per-clip, scrubbed MP4, and scrubbed JPG frames. |
 
 ## Shared conventions
 

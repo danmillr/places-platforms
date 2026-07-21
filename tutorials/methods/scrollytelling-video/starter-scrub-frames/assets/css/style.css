@@ -1,0 +1,96 @@
+/* Scrubbed frames scrollytelling — style.css */
+
+:root {
+  --runway-height: 800vh;   /* how much scroll to burn on the piece */
+  --brand-bg: #0f0e14;
+  --brand-fg: #f5f2ea;
+  --brand-accent: #e2a000;
+  --font: 'Inter', 'Open Sans', system-ui, sans-serif;
+  --gutter: 6vw;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--brand-bg);
+  color: var(--brand-fg);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+#frame {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  background: #000;
+  will-change: contents;
+}
+
+#bg-vignette {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(15,14,20,0.55), rgba(15,14,20,0.15) 30%, rgba(15,14,20,0.15) 70%, rgba(15,14,20,0.75)),
+    radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.55) 100%);
+}
+
+#runway {
+  position: relative;
+  z-index: 2;
+  min-height: var(--runway-height);
+}
+.overlay-block {
+  position: relative;
+  height: 0; /* invisible; only used as data-at / data-until carrier */
+}
+
+.overlay {
+  position: fixed;
+  max-width: 520px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  pointer-events: none;
+  z-index: 3;
+}
+.overlay.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+.overlay.top-left     { top: 8vh; left: var(--gutter); }
+.overlay.top-right    { top: 8vh; right: var(--gutter); text-align: right; }
+.overlay.bottom-left  { bottom: 10vh; left: var(--gutter); }
+.overlay.bottom-right { bottom: 10vh; right: var(--gutter); text-align: right; }
+.overlay.center       { top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+.overlay.center.active { transform: translate(-50%, calc(-50% - 6px)); }
+.overlay.left-panel   { top: 50%; left: var(--gutter); transform: translateY(-50%); max-width: 380px; }
+.overlay.left-panel.active  { transform: translateY(-50%); }
+.overlay.right-panel  { top: 50%; right: var(--gutter); transform: translateY(-50%); max-width: 380px; }
+.overlay.right-panel.active { transform: translateY(-50%); }
+
+.overlay h1 { font-weight: 800; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.02; margin: 0 0 0.5em; letter-spacing: -0.01em; }
+.overlay h2 { font-weight: 700; font-size: clamp(1.5rem, 4vw, 2.6rem); line-height: 1.1; margin: 0 0 0.4em; }
+.overlay p  { margin: 0 0 0.7em; font-size: clamp(0.95rem, 1.5vw, 1.15rem); }
+.overlay .byline { opacity: 0.75; font-size: 0.9rem; }
+.overlay img { max-width: 100%; height: auto; display: block; border-radius: 4px; box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+.overlay .label { font-size: 0.85rem; opacity: 0.7; margin-top: 0.5em; font-style: italic; }
+
+.overlay:not(.right-panel):not(.left-panel) h1,
+.overlay:not(.right-panel):not(.left-panel) h2,
+.overlay:not(.right-panel):not(.left-panel) p {
+  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+}
+
+#progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 3px; width: 100vw;
+  background: rgba(255,255,255,0.08);
+  z-index: 10;
+}
+#progress-fill { height: 100%; width: 0; background: var(--brand-accent); transition: width 0.1s linear; }
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay { transition: opacity 0.2s ease; transform: none !important; }
+}

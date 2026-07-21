@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scrubbed scrollytelling (single MP4)</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!--
+    One MP4 element. currentTime is driven directly by scroll position.
+    See ../README.md for the ffmpeg encoding needed to get smooth seeking.
+  -->
+  <video id="bg-video" muted playsinline preload="auto"
+         src="assets/clips/source.mp4"></video>
+  <div id="bg-vignette"></div>
+
+  <div id="progress-bar"><div id="progress-fill"></div></div>
+
+  <main id="runway">
+    <section class="overlay-block" data-at="0.00" data-until="0.15">
+      <div class="overlay title top-left">
+        <h1>Your Title Here</h1>
+        <p class="byline">Cornell ARCH 6133, 2026</p>
+      </div>
+    </section>
+
+    <section class="overlay-block" data-at="0.20" data-until="0.40">
+      <div class="overlay caption bottom-right">
+        <p>A one-line hook.</p>
+      </div>
+    </section>
+
+    <section class="overlay-block" data-at="0.45" data-until="0.60">
+      <div class="overlay title center">
+        <h2>Every 3 minutes</h2>
+      </div>
+    </section>
+
+    <section class="overlay-block" data-at="0.60" data-until="0.80">
+      <div class="overlay right-panel">
+        <img src="assets/img/example.jpg" alt="" />
+        <p class="label">Photo credit</p>
+      </div>
+    </section>
+
+    <section class="overlay-block" data-at="0.85" data-until="1.00">
+      <div class="overlay center">
+        <h2>Closing thought</h2>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/js/scrub-mp4.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scrollytelling starter</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!--
+    ONE video element for the whole page. It stays fixed behind everything.
+    The scroll script switches its `src` when a new <section class="scene">
+    scrolls into view.
+  -->
+  <video id="bg-video" muted playsinline autoplay loop preload="auto"></video>
+  <div id="bg-vignette"></div>
+
+  <!--
+    Progress bar. Fills as the reader scrolls through the whole piece.
+    Delete the bar and the CSS rule if you don't want it.
+  -->
+  <div id="progress-bar"><div id="progress-fill"></div></div>
+
+  <main>
+
+    <!--
+      ============================================================
+      HOW TO EDIT
+
+      Each <section class="scene"> is one "scene" of your piece.
+      A scene has:
+        - data-clip:  path to the video file that plays behind it
+        - one or more <div class="overlay"> elements that fade in
+          and out at specific points in the scene's scroll.
+
+      Overlay knobs:
+        data-at        — fade in when scene progress passes this (0..1)
+        data-until     — fade out at this scene progress (0..1)
+        class="..."    — layout: use `title`, `caption`, `label`, and
+                         a position class: `top-left`, `top-right`,
+                         `bottom-left`, `bottom-right`, `center`,
+                         `left-panel`, `right-panel`.
+
+      Add a scene: copy any existing <section> block, change data-clip,
+      and edit the overlays inside.
+
+      Swap a video: put a new .mp4 in assets/clips/ and change data-clip.
+      ============================================================
+    -->
+
+    <section class="scene" data-clip="assets/clips/01_opening.mp4" data-label="Opening">
+      <div class="overlay title top-left" data-at="0.05" data-until="0.55">
+        <h1>Your Title Here</h1>
+        <p class="byline">By your name — Cornell ARCH 6133, 2026</p>
+      </div>
+
+      <div class="overlay caption bottom-right" data-at="0.35" data-until="0.90">
+        <p>A one-line hook that sets the argument up.</p>
+      </div>
+    </section>
+
+    <section class="scene" data-clip="assets/clips/02_scene.mp4" data-label="Scene two">
+      <div class="overlay title center" data-at="0.05" data-until="0.35">
+        <h2>Every 3 minutes</h2>
+      </div>
+
+      <div class="overlay caption bottom-left" data-at="0.35" data-until="0.75">
+        <p>A caption that appears later in the same scene, layered over the same clip.</p>
+      </div>
+
+      <div class="overlay right-panel" data-at="0.45" data-until="0.95">
+        <img src="assets/img/example.jpg" alt="Descriptive alt text" />
+        <p class="label">Photo caption / credit</p>
+      </div>
+    </section>
+
+    <section class="scene" data-clip="assets/clips/03_data.mp4" data-label="A data point">
+      <div class="overlay title top-right" data-at="0.10" data-until="0.90">
+        <h2 class="stat">62%</h2>
+        <p>of surveyed storefronts have changed hands since 2015.</p>
+      </div>
+    </section>
+
+    <section class="scene" data-clip="assets/clips/04_close.mp4" data-label="Close">
+      <div class="overlay center" data-at="0.20" data-until="0.85">
+        <h2>Closing thought</h2>
+        <p>One sentence that sends the reader off with something to hold.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assets/js/scroll.js"></script>
+</body>
+</html>

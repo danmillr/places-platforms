@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scrubbed scrollytelling (JPG frames)</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!--
+    The one image element that acts as the "video". The scroll script
+    swaps its `src` to a different frame as the reader scrolls.
+    Total number of frames is set in scrub.js (FRAME_COUNT).
+  -->
+  <img id="frame" src="assets/frames/frame_0001.jpg" alt="" />
+  <div id="bg-vignette"></div>
+
+  <div id="progress-bar"><div id="progress-fill"></div></div>
+
+  <!--
+    ONE long scroll runway. Its height is what drives the scrub.
+    The child sections carry the overlays. The scroll script does not
+    "switch scenes" — it maps global scroll position (0..1) directly
+    to the frame index.
+  -->
+  <main id="runway">
+
+    <section class="overlay-block" data-at="0.00" data-until="0.15">
+      <div class="overlay title top-left">
+        <h1>Your Title Here</h1>
+        <p class="byline">Cornell ARCH 6133, 2026</p>
+      </div>
+    </section>
+
+    <section class="overlay-block" data-at="0.20" data-until="0.40">
+      <div class="overlay caption bottom-right">
+        <p>A one-line hook that sets the argument up.</p>
+      </div>
+    </section>
+
+    <section class="overlay-block" data-at="0.45" data-until="0.60">
+      <div class="overlay title center">
+        <h2>Every 3 minutes</h2>
+      </div>
+    </section>
+
+    <section class="overlay-block" data-at="0.60" data-until="0.80">
+      <div class="overlay right-panel">
+        <img src="assets/img/example.jpg" alt="" />
+        <p class="label">Photo credit</p>
+      </div>
+    </section>
+
+    <section class="overlay-block" data-at="0.85" data-until="1.00">
+      <div class="overlay center">
+        <h2>Closing thought</h2>
+        <p>One sentence to send the reader off.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assets/js/scrub.js"></script>
+</body>
+</html>

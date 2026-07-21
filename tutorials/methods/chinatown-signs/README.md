@@ -3,7 +3,8 @@
 A full end-to-end analysis pipeline. Two entry points:
 
 - **`chinatown_signs.ipynb`** — the original notebook. Samples along street centerlines every 80ft, runs the full downstream signs pipeline (OCR + color + embedding + 3D map). Good for the argument about semantic space.
-- **`pluto_viewpoints.py` → `discover_panos.py` → `fetch_facades.py` → `build_strips.py`** — the PLUTO + temporal workflow. One camera per tax lot, aimed at the facade, sampled across every historical Google Street View pass from 2007 to today. Good for change-over-time analysis (turnover, sign replacement, gentrification pace). Documented in the "PLUTO + temporal Street View" section below.
+- **`pluto_viewpoints.py` → `discover_panos.py` → `fetch_facades.py` → `build_strips.py` → `write_manifest.py`** — the PLUTO + temporal workflow. One camera per tax lot, aimed at the facade, sampled across every historical Google Street View pass from 2007 to today. Good for change-over-time analysis (turnover, sign replacement, gentrification pace). Documented in the "PLUTO + temporal Street View" section below.
+- **`ANALYSIS.md`** — downstream scaffold: how to do sign extraction, color analysis, multilingual OCR, embeddings, 3D reduction, map + 3D visualization, and packaging as a static website. Read this after you've produced the manifest.
 
 Both share the same downstream steps 4-9 (OCR, color, embeddings, maps). Pick your entry based on whether the argument is "what do signs mean in space" (centerline sampling) or "what changed on this lot over N years" (PLUTO temporal).
 

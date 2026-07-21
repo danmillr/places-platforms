@@ -66,14 +66,22 @@ def fetch_one(session: requests.Session, api_key: str, pano_id: str, heading: fl
         "pitch": PITCH,
         "key": api_key,
     }
-    r = session.get(SV_URL, params=params, timeout=30)
-    if r.status_code != 200:
-        return False, f"http {r.status_code}"
-    # Google returns a "no imagery" 640x400 gray placeholder — filter by content length
-    if len(r.content) < 5000:
-        return False, "no imagery"
-    out_path.write_bytes(r.content)
-    return True, "downloaded"
+    last_err = None
+    for attempt in range(4):
+        try:
+            r = session.get(SV_URL, params=params, timeout=30)
+            if r.status_code != 200:
+                return False, f"http {r.status_code}"
+            if len(r.content) < 5000:
+                return False, "no imagery"
+            out_path.write_bytes(r.content)
+            return True, "downloaded"
+        except (requests.exceptions.ConnectionError,
+                requests.exceptions.Timeout,
+                requests.exceptions.ChunkedEncodingError) as e:
+            last_err = e
+            time.sleep(1.5 ** attempt)
+    return False, f"network: {last_err}"
 
 
 def main() -> int:
@@ -86,7 +94,11 @@ def main() -> int:
 
     api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
     if not api_key:
-        print("[!] Set GOOGLE_MAPS_API_KEY before running.")
+        keyfile = pathlib.Path.home() / ".config" / "gmaps_api_key"
+        if keyfile.exists():
+            api_key = keyfile.read_text().strip()
+    if not api_key:
+        print("[!] No API key. Set GOOGLE_MAPS_API_KEY env var or write to ~/.config/gmaps_api_key")
         return 2
 
     target_years = [int(y) for y in args.years.split(",")]
