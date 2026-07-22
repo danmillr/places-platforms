@@ -6,7 +6,10 @@ venv/
 tutorials/methods/scrollytelling-video/starter/assets/clips/*.mp4
 tutorials/methods/scrollytelling-video/starter-scrub-video/assets/clips/*.mp4
 tutorials/methods/scrollytelling-video/starter-scrub-frames/assets/frames/*.jpg
-tutorials/methods/scrollytelling-video/starter-scrub-frames-simple/frames/*.jpg
+# NOTE: starter-scrub-frames-simple/frames/ is intentionally COMMITTED so the
+# GitHub Pages preview has working footage. Individual student projects should
+# add this back to their own .gitignore before extracting their own frames.
+# tutorials/methods/scrollytelling-video/starter-scrub-frames-simple/frames/*.jpg
 
 # Chinatown facades — image cache is Google's copyright, not for redistribution.
 tutorials/methods/chinatown-signs/data/facades/
