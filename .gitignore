@@ -1,3 +1,25 @@
 # Ignore Python virtual environment
 venv/
 .env/
+
+# Scrollytelling starters — student-supplied media is not committed.
+tutorials/methods/scrollytelling-video/starter/assets/clips/*.mp4
+tutorials/methods/scrollytelling-video/starter-scrub-video/assets/clips/*.mp4
+tutorials/methods/scrollytelling-video/starter-scrub-frames/assets/frames/*.jpg
+tutorials/methods/scrollytelling-video/starter-scrub-frames-simple/frames/*.jpg
+
+# Chinatown facades — image cache is Google's copyright, not for redistribution.
+tutorials/methods/chinatown-signs/data/facades/
+tutorials/methods/chinatown-signs/data/strips/
+tutorials/methods/chinatown-signs/data/strips_sample_montage.jpg
+tutorials/methods/chinatown-signs/__pycache__/
+tutorials/methods/chinatown-signs/cache/
+
+# Subspotting — the raw PNG is subspotting.nyc's copyright.
+tutorials/methods/subspotting-scrape/data/systemexplorer.png
+tutorials/methods/subspotting-scrape/data/systemexplorer_1728w.png
+tutorials/methods/subspotting-scrape/data/left_label_column.png
+
+# Local API keys — never commit.
+**/.gmaps_api_key
+**/gmaps_api_key
